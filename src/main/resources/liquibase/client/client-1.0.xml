@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../dbchangelog-3.5.xsd">
+
+    <changeSet id="client-1.0" author="vlodosm" logicalFilePath="path-independent" context="prod" runInTransaction="true">
+        <sql>
+            CREATE TABLE CLIENT
+            (
+            LAST_NAME VARCHAR2(35 CHAR) NOT NULL,
+            FIRST_NAME VARCHAR2(35 CHAR) NOT NULL,
+            MIDDLE_NAME VARCHAR2(35 CHAR) NOT NULL,
+            SEX VARCHAR2(1 CHAR) NOT NULL,
+            BIRTH_DATE DATE NOT NULL,
+            MOBILE_PHONE VARCHAR2(10 CHAR) NOT NULL,
+            PASSPORT_SERIES VARCHAR2(4 CHAR) NOT NULL,
+            PASSPORT_NUMBER VARCHAR2(6 CHAR) NOT NULL,
+            PASSPORT_ISSUE_DATE DATE NOT NULL,
+            PASSPORT_ISSUE_OFFICE VARCHAR2(70 CHAR) NOT NULL,
+            PASSPORT_ISSUE_OFFICE_CODE VARCHAR2(7 CHAR) NOT NULL
+            )
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE CLIENT;
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../dbchangelog-3.5.xsd">
+
+    <changeSet id="account-1.0" author="vlodosm" logicalFilePath="path-independent" context="prod" runInTransaction="true">
+        <sql>
+            CREATE TABLE ACCOUNT
+            (
+            ID VARCHAR2(10 CHAR) NOT NULL,
+            ACCOUNT_TYPE(35 CHAR) NOT NULL,
+            CREATED_TIME DATE CURRENT_TIMESTAMP,
+            CLOSED_TIME DATE,
+            BALANCE VARCHAR2(35 CHAR),
+            OWNER VARHCAR2(6 CHAR) NOT NULL
+            )
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE ACCOUNT;
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

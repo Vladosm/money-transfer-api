@@ -1,0 +1,8 @@
+application:
+    version: '@application.version@'
+    name: '@application.name@'
+server:
+    contextPath: /accounts-api
+health:
+    config:
+        enabled: false

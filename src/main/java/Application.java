@@ -1,22 +1,12 @@
-import com.google.inject.servlet.GuiceFilter;
-import config.GuiceContextListener;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.servlet.DispatcherType;
-import java.util.EnumSet;
-
+@SpringBootApplication
+@EnableSwagger2
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        Server server = new Server(8000);
-        ServletContextHandler handler =
-                new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS);
-        handler.addFilter(GuiceFilter.class, "/*", EnumSet.allOf(DispatcherType.class));
-        GuiceContextListener contextListener = new GuiceContextListener("money-transfer-api");
-        handler.addEventListener(contextListener);
-        handler.addServlet(HttpServletDispatcher.class, "/*");
-        server.start();
+        SpringApplication.run(Application.class, args);
     }
 }

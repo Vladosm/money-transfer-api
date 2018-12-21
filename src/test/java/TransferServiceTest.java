@@ -1,12 +1,9 @@
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import config.TransferModule;
-import exception.NotEnoughMoney;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import service.TransferServiceImpl;
 
 public class TransferServiceTest {
 

@@ -1,23 +1,38 @@
-group 'ru.test.revolut'
-version '0.0.1'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'application'
+    id 'org.springframework.boot' version '1.5.14.RELEASE'
+}
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile 'org.projectlombok:lombok:1.18.2'
-    compile 'com.google.inject:guice:4.0-beta4'
-    compile 'com.google.inject.extensions:guice-servlet:4.0-beta4'
-    compile 'com.google.inject.extensions:guice-persist:4.0-beta4'
-    compile 'org.jboss.resteasy:resteasy-guice:3.0.8.Final'
-    compile 'org.jboss.resteasy:resteasy-jaxrs:3.0.8.Final'
-    compile 'org.eclipse.jetty:jetty-server:9.2.0.v20140526'
-    compile 'org.eclipse.jetty:jetty-servlet:9.2.0.v20140526'
+    compile 'org.slf4j:slf4j-api'
+    compile 'org.slf4j:jcl-over-slf4j'
+    compile 'org.slf4j:log4j-over-slf4j'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    compile 'io.springfox:springfox-swagger2:2.6.1'
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+group 'ru.test.revolut'
+version project.hasProperty('projVersion') ? project.projVersion : '1.0.0'
+
+
+processResources {
+    filesMatching('application.yml') {
+        filter {
+            it.replace('@application.name@', project.property('name'))
+        }
+        filter {
+            it.replace('@application.version@', project.property('version'))
+        }
+    }
 }
